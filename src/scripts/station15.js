@@ -12,16 +12,17 @@ async function getData() {
   return await result
 }
 
-function test(data) {
-  new Promise((resolve) =>{
+function test(userList) {
+  return new Promise((resolve) =>{
     setTimeout(() =>{
-      console.log("3秒経過");
-      data.full_name = `${data.family_name} ${data.first_name}`;
-      console.log(data);
-      resolve();
+      resolve(userList.map(buildFullName));
+      console.log(userList);
     },3000);
-  }).then(() =>{
-    return data;
   });
   
+}
+
+function buildFullName(data) {    
+  data.full_name = `${data.family_name} ${data.first_name}`;
+  return data;
 }
